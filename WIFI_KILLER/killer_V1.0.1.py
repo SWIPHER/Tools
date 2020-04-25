@@ -10,32 +10,32 @@ def connect_wifi():
     global dics_2
     os.system("ifconfig wlan0 down")
     os.system("ifconfig wlan0 up")
-    wifi = pywifi.PyWiFi()  # 创建一个wifi对象
-    ifaces = wifi.interfaces()[1]  # 取第一个无限网卡
-    print(ifaces.name())  # 输出无线网卡名称
-    ifaces.disconnect()  # 断开网卡连接
-    time.sleep(3)  # 缓冲3秒
-    profile = pywifi.Profile()  # 配置文件
-    profile.ssid = "TELUSWiFi0421"  # wifi名称
-    profile.auth = const.AUTH_ALG_OPEN  # 需要密码
-    profile.akm.append(const.AKM_TYPE_WPA2PSK)  # 加密类型
-    profile.cipher = const.CIPHER_TYPE_CCMP  # 加密单元
-    profile.key = 'eQPm4QtXrx'  #wifi密码
-    ifaces.remove_all_network_profiles()  # 删除其他配置文件
-    tmp_profile = ifaces.add_network_profile(profile)  # 加载配置文件
-    ifaces.connect(tmp_profile)  # 连接
+    wifi = pywifi.PyWiFi()
+    ifaces = wifi.interfaces()[1]
+    print(ifaces.name())
+    ifaces.disconnect()
+    time.sleep(3)
+    profile = pywifi.Profile()
+    profile.ssid = "TELUSWiFi0421"
+    profile.auth = const.AUTH_ALG_OPEN
+    profile.akm.append(const.AKM_TYPE_WPA2PSK)
+    profile.cipher = const.CIPHER_TYPE_CCMP
+    profile.key = 'eQPm4QtXrx'
+    ifaces.remove_all_network_profiles()
+    tmp_profile = ifaces.add_network_profile(profile)
+    ifaces.connect(tmp_profile)
     time.sleep(5)
     print("[*]status:",ifaces.status())
     if ifaces.status() != const.IFACE_CONNECTED:
-        profile = pywifi.Profile()  # 配置文件
-        profile.ssid = "TELUS1773"  # wifi名称
-        profile.auth = const.AUTH_ALG_OPEN  # 需要密码
-        profile.akm.append(const.AKM_TYPE_WPA2PSK)  # 加密类型
-        profile.cipher = const.CIPHER_TYPE_CCMP  # 加密单元
-        profile.key = '9nnx6aq94j'  #wifi密码
-        ifaces.remove_all_network_profiles()  # 删除其他配置文件
-        tmp_profile = ifaces.add_network_profile(profile)  # 加载配置文件
-        ifaces.connect(tmp_profile)  # 连接
+        profile = pywifi.Profile()
+        profile.ssid = "TELUS1773"
+        profile.auth = const.AUTH_ALG_OPEN
+        profile.akm.append(const.AKM_TYPE_WPA2PSK)
+        profile.cipher = const.CIPHER_TYPE_CCMP
+        profile.key = '9nnx6aq94j'
+        ifaces.remove_all_network_profiles()
+        tmp_profile = ifaces.add_network_profile(profile)
+        ifaces.connect(tmp_profile)
         time.sleep(5)
         pass
         if ifaces.status() != const.IFACE_CONNECTED:
